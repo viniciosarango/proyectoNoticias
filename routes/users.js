@@ -11,8 +11,11 @@ router.get('/', function(req, res, next) {
 
 //buscar y listar son get
 router.get("/admin/usuarios", usuarioControl.listar);
+router.get("/admin/usuarios/:external", usuarioControl.buscar);
 
 //guardar y modificar es post
 router.post("/admin/usuarios/guardar", usuarioControl.guardar);
+
+
 
 module.exports = router;
