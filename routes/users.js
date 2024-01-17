@@ -15,6 +15,7 @@ router.get("/admin/usuarios/:external", usuarioControl.buscar);
 
 //guardar y modificar es post
 router.post("/admin/usuarios/guardar", usuarioControl.guardar);
+router.post("/admin/usuarios/actualizar", usuarioControl.actualizar);
 
 
 

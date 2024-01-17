@@ -49,6 +49,29 @@ class usuarioControl{
     }
 
 
+    async actualizar(req, res){
+        const user = await usuario.findOne({            
+            where:{external:req.body.external}            //debe ser con post, entonces se usa body
+        });        
+
+        if(user!=null){
+            user.nombre=req.body.nombre;
+            user.clave=req.body.clave;
+            user.external=uuid.v4();
+            const userA = await user.save();
+
+            if(userA != null && userA != undefined){
+                res.status(200);
+                res.json({mensaje: "OK", code:200, data:"Registro actualizado"});
+            } else {
+                res.status(400);
+                res.json({mensaje: "Solicitud fallida", code:400, data:"No se actualizo"});
+            }
+
+        } else{
+            res.json({mensaje: "Solicitud no valida", code:400, data:"Usuario nol encontrado"})
+        }        
+    }
 }
 
 //para exportar la clase
