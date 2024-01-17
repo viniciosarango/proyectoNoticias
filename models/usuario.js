@@ -1,6 +1,5 @@
 'use strict';
 
-
 module.exports = (sequelize, DataTypes) =>{
     const usuario = sequelize.define('usuario', {
         correo: {type:DataTypes.STRING(100), unique: true},
@@ -10,9 +9,8 @@ module.exports = (sequelize, DataTypes) =>{
         estado: {type:DataTypes.BOOLEAN, defaultValue: true}
     }, {freezeTableName: true});
 
-    usuario.associate = function(models) {
-        usuario.hasMany(models.noticia, { foreignKey: 'id_usuario', as: 'noticia' });
-    }    
-
+    usuario.associate=function(models){
+        usuario.hasMany(models.noticia,{foreignkey:'id_usuario', as:'noticia' })
+    }
     return usuario;
 }

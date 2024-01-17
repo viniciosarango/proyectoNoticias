@@ -1,6 +1,5 @@
 'use strict';
 
-
 module.exports = (sequelize, DataTypes) =>{
     const noticia = sequelize.define('noticia', {        
         titulo: {type:DataTypes.STRING(100), allowNull: false},
