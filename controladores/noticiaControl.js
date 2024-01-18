@@ -59,19 +59,20 @@ class noticiaControl{
         }        
     }
 
-/*
+
     async actualizar(req, res){
-        const user = await usuario.findOne({            
-            where:{external:req.body.external}            //debe ser con post, entonces se usa body
+        const noticia_actualizar = await noticia.findOne({            
+            where:{external:req.body.external_noticia}            //debe ser con post, entonces se usa body
         });        
 
-        if(user!=null){
-            user.nombre=req.body.nombre;            
-            user.clave=req.body.clave;
-            user.external=uuid.v4();
-            const userA = await user.save();
+        if(noticia_actualizar!=null){
+            noticia_actualizar.titulo=req.body.titulo;            
+            noticia_actualizar.cuerpo=req.body.cuerpo;
+            noticia_actualizar.external=uuid.v4();
+            
+            const noticiaA = await noticia_actualizar.save();
 
-            if(userA != null && userA != undefined){
+            if(noticiaA != null && noticiaA != undefined){
                 res.status(200);
                 res.json({mensaje: "OK", code:200, data:"Registro actualizado"});
             } else {
@@ -80,9 +81,9 @@ class noticiaControl{
             }
 
         } else{
-            res.json({mensaje: "Solicitud no valida", code:400, data:"Usuario nol encontrado"})
+            res.json({mensaje: "Solicitud no valida", code:400, data:"Noticia no encontrada"})
         }        
-    }*/
+    }
 }
 
 //para exportar la clase

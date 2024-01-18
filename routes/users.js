@@ -25,5 +25,5 @@ router.post("/admin/usuarios/actualizar", usuarioControl.actualizar);
 router.get("/admin/noticias", noticiaControl.listar);
 router.post("/admin/noticias/guardar", noticiaControl.guardar);
 router.get("/admin/noticias/:external_noticia", noticiaControl.buscar);
-
+router.post("/admin/noticias/actualizar", noticiaControl.actualizar);
 module.exports = router;
