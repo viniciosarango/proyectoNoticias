@@ -17,7 +17,6 @@ router.get('/', function(req, res, next) {
 //buscar y listar son get
 router.get("/admin/usuarios", usuarioControl.listar);
 router.get("/admin/usuarios/:external", usuarioControl.buscar);
-
 //guardar y modificar es post
 router.post("/admin/usuarios/guardar", usuarioControl.guardar);
 router.post("/admin/usuarios/actualizar", usuarioControl.actualizar);
@@ -25,5 +24,6 @@ router.post("/admin/usuarios/actualizar", usuarioControl.actualizar);
 //NOTICIAS
 router.get("/admin/noticias", noticiaControl.listar);
 router.post("/admin/noticias/guardar", noticiaControl.guardar);
+router.get("/admin/noticias/:external_noticia", noticiaControl.buscar);
 
 module.exports = router;

@@ -45,22 +45,21 @@ class noticiaControl{
         }        
     }
 
-/*
+
     async buscar(req, res){
-        const user = await usuario.findOne({
-            attributes: ['nombre', 'correo', 'external', 'estado'],
-            where:{external:req.params.external}            
+        const noticia_buscar = await noticia.findOne({            
+            where:{external:req.params.external_noticia}            
         });
         res.status(200);
 
-        if(user!=null){
-            res.json({mensaje: "OK", code:200, data:user})
+        if(noticia_buscar!=null){
+            res.json({mensaje: "OK", code:200, data:noticia_buscar})
         } else{
             res.json({mensaje: "Solicitud erronea", code:400, data:[]})
         }        
     }
 
-
+/*
     async actualizar(req, res){
         const user = await usuario.findOne({            
             where:{external:req.body.external}            //debe ser con post, entonces se usa body
