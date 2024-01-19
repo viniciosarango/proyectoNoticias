@@ -9,6 +9,10 @@ const usuarioControl = new usuarioA();
 const noticiaA = require('../controladores/noticiaControl');
 const noticiaControl = new noticiaA();
 
+const loginA = require('../controladores/loginControl');
+const loginControl = new loginA();
+
+
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -37,4 +41,18 @@ router.get("/admin/noticias", noticiaControl.listar);
 router.post("/admin/noticias/guardar", noticiaControl.guardar);
 router.get("/admin/noticias/:external_noticia", noticiaControl.buscar);
 router.post("/admin/noticias/actualizar", noticiaControl.actualizar);
+
+//LOGIN
+
+router.post(
+  "/login", 
+  [    
+    body('correo', 'ingrese un correo valido').trim().exists().not().isEmpty().isEmail(),
+    body('clave', 'ingrese una clave valida').trim().exists().not().isEmpty()
+  ],
+  loginControl.inicio_sesion
+);
+
+
+
 module.exports = router;
