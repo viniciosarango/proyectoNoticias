@@ -12,7 +12,17 @@ const noticiaControl = new noticiaA();
 const loginA = require('../controladores/loginControl');
 const loginControl = new loginA();
 
+let auth = function middleware(req, res, next){
+  const token = req.headers["api-token"];
+  console.log(token);
+  if(token === undefined){
+    res.status(403);
+    res.json({mensaje: "ok", code:403, data:"no se envio token"});
+  } else{
+    next();
 
+  }
+}
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -21,7 +31,7 @@ router.get('/', function(req, res, next) {
 
 //USUARIOS
 //buscar y listar son get
-router.get("/admin/usuarios", usuarioControl.listar);
+router.get("/admin/usuarios", auth, usuarioControl.listar);
 router.get("/admin/usuarios/:external", usuarioControl.buscar);
 
 router.post(
