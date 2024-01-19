@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+const {body} = require ('express-validator');
+
 
 const usuarioA = require('../controladores/usuarioControl');
 const usuarioControl = new usuarioA();
@@ -17,8 +19,17 @@ router.get('/', function(req, res, next) {
 //buscar y listar son get
 router.get("/admin/usuarios", usuarioControl.listar);
 router.get("/admin/usuarios/:external", usuarioControl.buscar);
-//guardar y modificar es post
-router.post("/admin/usuarios/guardar", usuarioControl.guardar);
+
+router.post(
+  "/admin/usuarios/guardar", 
+  [
+    body('nombre', 'ingrese un nombre valido').trim().exists().not().isEmpty(),
+    body('correo', 'ingrese un correo valido').trim().exists().not().isEmpty().isEmail(),
+    body('clave', 'ingrese una clave valida').trim().exists().not().isEmpty()
+  ],
+  usuarioControl.guardar
+);
+
 router.post("/admin/usuarios/actualizar", usuarioControl.actualizar);
 
 //NOTICIAS
