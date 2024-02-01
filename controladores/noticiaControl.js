@@ -15,6 +15,25 @@ class noticiaControl{
         res.json({mensaje: "OK", code:200, data:lista})
     }
     
+
+
+    async listar_usuario(req, res){
+        const auxU = await usuario.findOne({            
+            where:{external:req.params.external}            
+        });
+        res.status(200);
+
+        if(auxU){
+            const lista = await noticia.findAll({
+                attributes: ['titulo', 'cuerpo', 'fecha', 'external', 'estado'],            
+                where:{usuarioId:auxU.id}            
+            });
+            res.json({mensaje: "OK", code:200, data:lista})
+        } else{
+            res.json({mensaje: "Ok", code:200, data:[]})
+        }        
+    }
+
     async guardar(req, res){
 
         const userNoticia = await usuario.findOne({            

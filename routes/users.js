@@ -69,6 +69,7 @@ router.post("/admin/usuarios/actualizar", usuarioControl.actualizar);
 
 //NOTICIAS
 router.get("/admin/noticias", noticiaControl.listar);
+router.get("/admin/noticias/user/:external", auth, noticiaControl.listar_usuario);
 router.post("/admin/noticias/guardar", noticiaControl.guardar);
 router.get("/admin/noticias/:external_noticia", noticiaControl.buscar);
 router.post("/admin/noticias/actualizar", noticiaControl.actualizar);
